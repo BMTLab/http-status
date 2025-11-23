@@ -8,6 +8,8 @@ A fast, zero-dependency CLI tool to look up HTTP status codes from your terminal
 * see concise descriptions, typical HTTP methods, and flags (e.g. `DEPRECATED`, `UNOFFICIAL`),
 * output machine-friendly lists of codes or names for use in scripts and tools.
 
+<img width="1338" height="832" alt="http_status" src="https://github.com/user-attachments/assets/c5c6b623-8381-43b2-9a97-4e0b194e8153" />
+
 ---
 
 ## Features
