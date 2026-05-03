@@ -36,8 +36,8 @@ A fast, zero-dependency CLI tool to look up HTTP status codes from your terminal
 
 4. **Machine-readable modes**
 
-   * `-k` — print **codes only** (one per line).
-   * `-n` — print **names only** (one per line).
+   * `-k`: print **codes only** (one per line).
+   * `-n`: print **names only** (one per line).
    * Designed to be easy to consume in scripts.
 
 5. **Zero external dependencies**
@@ -47,7 +47,7 @@ A fast, zero-dependency CLI tool to look up HTTP status codes from your terminal
 
 > [!TIP]
 > `http-status` is ideal for quick lookups while debugging APIs, writing docs,
-> or building tests — without alt-tabbing to a browser.
+> or building tests: without alt-tabbing to a browser.
 
 ---
 
@@ -165,11 +165,11 @@ http-status -C never  404  # disable colors completely
 
 Classes are colored as follows (when color is enabled):
 
-* `1xx` — informational (cyan)
-* `2xx` — success (green)
-* `3xx` — redirection (yellow)
-* `4xx` — client error (red)
-* `5xx` — server error (magenta)
+* `1xx`: informational (cyan)
+* `2xx`: success (green)
+* `3xx`: redirection (yellow)
+* `4xx`: client error (red)
+* `5xx`: server error (magenta)
 
 This makes it easier to visually scan lists of statuses.
 
@@ -185,13 +185,13 @@ http-status [-h] [-a] [-C mode] [-k | -n] [-x] [query...]
 
 | Option     | Type       | Default | Description                                                              |
 | ---------- | ---------- | ------- | ------------------------------------------------------------------------ |
-| `-h`       | flag       | —       | Show help and exit.                                                      |
+| `-h`       | flag       |:       | Show help and exit.                                                      |
 | `-a`       | flag       | `false` | List all statuses (also the default if no queries are provided).         |
 | `-C MODE`  | string     | `auto`  | Color mode: `auto`, `always`, or `never`.                                |
 | `-k`       | flag       | `false` | Print **codes only** (one per line).                                     |
 | `-n`       | flag       | `false` | Print **names only** (one per line).                                     |
 | `-x`       | flag       | `false` | Exact phrase match on name/aliases instead of fuzzy substring search.    |
-| `query...` | positional | —       | One or more codes, masks, or text queries to match against the database. |
+| `query...` | positional |:       | One or more codes, masks, or text queries to match against the database. |
 
 Behavior summary:
 
@@ -203,10 +203,10 @@ Behavior summary:
 
 ## Exit codes
 
-* `0` — success; at least one match printed
-* `1` (`HS_ERR_GENERAL`) — general error or internal failure
-* `2` (`HS_ERR_USAGE`) — invalid usage or arguments (bad options, etc.)
-* `3` (`HS_ERR_NO_MATCH`) — status database loaded, but no rows matched the query
+* `0`: success; at least one match printed
+* `1` (`HS_ERR_GENERAL`): general error or internal failure
+* `2` (`HS_ERR_USAGE`): invalid usage or arguments (bad options, etc.)
+* `3` (`HS_ERR_NO_MATCH`): status database loaded, but no rows matched the query
 
 When the script is sourced, `http-status` **returns** these codes; when the script is executed,
 it calls `exit` with the same codes.
