@@ -112,6 +112,7 @@ function __hs_error() {
   local -ir code="${2:-$HS_ERR_GENERAL}"
 
   printf 'ERROR: %s\n\n' "$message" >&2
+
   # Only show usage if it's a usage error
   if [[ $code -eq $HS_ERR_USAGE ]]; then
     __hs_usage
@@ -270,6 +271,7 @@ function __hs_row_matches_query() {
   fi
 
   local current_query
+
   for current_query in "${_user_queries[@]}"; do
     # 1. Numeric Mask Match (e.g. "404", "4xx", "42x")
     # We allow 'x' or 'X' as a wildcard for digits.
@@ -374,12 +376,14 @@ function __hs_print_entry() {
   # Mode 1: Codes only
   if [[ $show_codes_only == true ]]; then
     printf '%s\n' "$entry_code"
+
     return 0
   fi
 
   # Mode 2: Names only
   if [[ $show_names_only == true ]]; then
     printf '%s\n' "$entry_name"
+
     return 0
   fi
 
@@ -396,12 +400,14 @@ function __hs_print_entry() {
 
   # Format flags (e.g., DEPRECATED, UNOFFICIAL)
   local flags_display=''
+
   if [[ -n $entry_flags && $entry_flags != '-' ]]; then
     flags_display=" ${color_dim}[${entry_flags}]${color_reset}"
   fi
 
   # Format aliases (e.g. aka: ...)
   local aliases_display=''
+
   if [[ -n $entry_aliases && $entry_aliases != '-' ]]; then
     local pretty_aliases="${entry_aliases//;/, }"
     aliases_display=" ${color_dim}(aka: ${pretty_aliases})${color_reset}"
@@ -414,6 +420,7 @@ function __hs_print_entry() {
 
   # Row 2: Methods and Description (Indented)
   local methods_display="Any"
+
   if [[ -n $entry_methods && $entry_methods != '-' ]]; then
     methods_display="$entry_methods"
   fi
@@ -450,10 +457,12 @@ function http-status() {
 
   ## 1. Argument Parsing
   local opt
+
   while getopts ':haC:knx' opt; do
     case "$opt" in
       h)
         __hs_usage
+
         return 0
         ;;
       a)
@@ -479,6 +488,7 @@ function http-status() {
         ;;
     esac
   done
+
   shift $((OPTIND - 1))
 
   if [[ $# -gt 0 ]]; then
@@ -496,6 +506,7 @@ function http-status() {
 
   ## 3. Environment Setup (Colors)
   local use_color=false
+
   case "$color_mode" in
     auto)
       if [[ -t 1 ]]; then
@@ -584,6 +595,7 @@ function http-status() {
 if [[ $HS_SCRIPT_SOURCED == false ]]; then
   http-status "$@"
   exit_code=$?
+
   exit "$exit_code"
 fi
 ### End
