@@ -158,10 +158,13 @@ http-status -x 'Payload Too Large'  # match 413 via alias
 The `-C` option controls how colors are used:
 
 ```bash
-http-status -C auto  404   # default: color if stdout is a TTY
+http-status -C auto  404   # default: color if stdout is a TTY and NO_COLOR holds no value
 http-status -C always 404  # force colors even when piping/redirecting
 http-status -C never  404  # disable colors completely
 ```
+
+Under `auto`, a non-empty `NO_COLOR` turns colors off, as [no-color.org](https://no-color.org) asks;
+`-C always` and `-C never` win over `NO_COLOR`.
 
 Classes are colored as follows (when color is enabled):
 

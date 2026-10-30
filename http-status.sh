@@ -31,6 +31,8 @@
 #   -h          Show this help and exit.
 #   -a          List all statuses (default if no query provided).
 #   -C MODE     Color output: 'auto' (default) | 'always' | 'never'.
+#               auto colors a terminal unless NO_COLOR holds a value;
+#               always and never win over NO_COLOR.
 #   -k          Print codes only (machine-readable).
 #   -n          Print names only (machine-readable).
 #   -x          Exact phrase match (requires full name/alias equality).
@@ -85,6 +87,8 @@ Options:
   -h          Show this help and exit.
   -a          List all statuses.
   -C MODE     Color mode: 'auto' (default), 'always', 'never'.
+              auto colors a terminal unless NO_COLOR holds a value;
+              always and never win over NO_COLOR.
   -k          Print codes only.
   -n          Print names only.
   -x          Exact phrase match (requires full name equality).
@@ -509,7 +513,9 @@ function http-status() {
 
   case "$color_mode" in
     auto)
-      if [[ -t 1 ]]; then
+      # Colors go to a terminal only, and NO_COLOR (https://no-color.org)
+      # turns them off; -C always and -C never win over NO_COLOR.
+      if [[ -z "${NO_COLOR:-}" && -t 1 ]]; then
         use_color=true
       fi
       ;;
