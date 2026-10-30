@@ -460,6 +460,9 @@ function http-status() {
   local -a queries=()
 
   ## 1. Argument Parsing
+  # A shell that sources the script keeps OPTIND between calls,
+  # so each call starts getopts again from its first argument.
+  local OPTIND=1
   local opt
 
   while getopts ':haC:knx' opt; do
