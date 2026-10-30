@@ -28,7 +28,7 @@
 #   http-status -n 5xx           # Print only names of 5xx errors
 #
 # Options:
-#   -h          Show this help and exit.
+#   -h, --help  Show this help and exit.
 #   -a          List all statuses (default if no query provided).
 #   -C MODE     Color output: 'auto' (default) | 'always' | 'never'.
 #               auto colors a terminal unless NO_COLOR holds a value;
@@ -84,7 +84,7 @@ Usage:
   http-status [-h] [-a] [-C mode] [-k | -n] [-x] [query...]
 
 Options:
-  -h          Show this help and exit.
+  -h, --help  Show this help and exit.
   -a          List all statuses.
   -C MODE     Color mode: 'auto' (default), 'always', 'never'.
               auto colors a terminal unless NO_COLOR holds a value;
@@ -465,9 +465,20 @@ function http-status() {
   local OPTIND=1
   local opt
 
-  while getopts ':haC:knx' opt; do
+  # The option -: lets getopts read --help, as the option - with the value help.
+  while getopts ':haC:knx-:' opt; do
     case "$opt" in
       h)
+        __hs_usage
+
+        return 0
+        ;;
+      -)
+        if [[ "${OPTARG}" != 'help' ]]; then
+          __hs_error "Invalid option: --${OPTARG}" "${HS_ERR_USAGE}" \
+            || return "$?"
+        fi
+
         __hs_usage
 
         return 0

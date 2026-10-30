@@ -186,15 +186,15 @@ http-status [-h] [-a] [-C mode] [-k | -n] [-x] [query...]
 
 ### Options
 
-| Option     | Type       | Default | Description                                                              |
-| ---------- | ---------- | ------- | ------------------------------------------------------------------------ |
-| `-h`       | flag       |:       | Show help and exit.                                                      |
-| `-a`       | flag       | `false` | List all statuses (also the default if no queries are provided).         |
-| `-C MODE`  | string     | `auto`  | Color mode: `auto`, `always`, or `never`.                                |
-| `-k`       | flag       | `false` | Print **codes only** (one per line).                                     |
-| `-n`       | flag       | `false` | Print **names only** (one per line).                                     |
-| `-x`       | flag       | `false` | Exact phrase match on name/aliases instead of fuzzy substring search.    |
-| `query...` | positional |:       | One or more codes, masks, or text queries to match against the database. |
+| Option         | Type       | Default | Description                                                              |
+| -------------- | ---------- | ------- | ------------------------------------------------------------------------ |
+| `-h`, `--help` | flag       | -       | Show help and exit.                                                      |
+| `-a`           | flag       | `false` | List all statuses (also the default if no queries are provided).         |
+| `-C MODE`      | string     | `auto`  | Color mode: `auto`, `always`, or `never`.                                |
+| `-k`           | flag       | `false` | Print **codes only** (one per line).                                     |
+| `-n`           | flag       | `false` | Print **names only** (one per line).                                     |
+| `-x`           | flag       | `false` | Exact phrase match on name/aliases instead of fuzzy substring search.    |
+| `query...`     | positional | -       | One or more codes, masks, or text queries to match against the database. |
 
 Behavior summary:
 
